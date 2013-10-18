@@ -65,6 +65,7 @@ static ngx_int_t    ngx_http_push_stream_init_module(ngx_cycle_t *cycle);
 static ngx_int_t    ngx_http_push_stream_init_worker(ngx_cycle_t *cycle);
 static void         ngx_http_push_stream_exit_worker(ngx_cycle_t *cycle);
 static void         ngx_http_push_stream_exit_master(ngx_cycle_t *cycle);
+static ngx_int_t    ngx_http_push_stream_preconfig(ngx_conf_t *cf);
 static ngx_int_t    ngx_http_push_stream_postconfig(ngx_conf_t *cf);
 static void *       ngx_http_push_stream_create_main_conf(ngx_conf_t *cf);
 static char *       ngx_http_push_stream_init_main_conf(ngx_conf_t *cf, void *parent);
@@ -72,7 +73,9 @@ static void *       ngx_http_push_stream_create_loc_conf(ngx_conf_t *cf);
 static char *       ngx_http_push_stream_merge_loc_conf(ngx_conf_t *cf, void *parent, void *child);
 
 // shared memory
-static ngx_int_t    ngx_http_push_stream_set_up_shm(ngx_conf_t *cf, size_t shm_size);
-static ngx_int_t    ngx_http_push_stream_init_shm_zone(ngx_shm_zone_t *shm_zone, void *data);
+char *              ngx_http_push_stream_set_shm_size_slot(ngx_conf_t *cf, ngx_command_t *cmd, void *conf);
+ngx_int_t           ngx_http_push_stream_init_shm_zone(ngx_shm_zone_t *shm_zone, void *data);
+ngx_int_t           ngx_http_push_stream_init_global_shm_zone(ngx_shm_zone_t *shm_zone, void *data);
+
 
 #endif /* NGX_HTTP_PUSH_STREAM_MODULE_SETUP_H_ */
